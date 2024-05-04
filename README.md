@@ -1,4 +1,4 @@
-# Spartacus DLL/COM Hijacking Toolkit ![version](https://img.shields.io/github/v/tag/Accenture/Spartacus?label=version&style=flat-square)
+# Spartacus DLL/COM Hijacking Toolkit ![version](https://img.shields.io/github/v/tag/sadreck/Spartacus?label=version&style=flat-square)
 
 ## Why "Spartacus"?
 
@@ -35,7 +35,7 @@ When a process that is vulnerable to DLL Hijacking is asking for a DLL to be loa
 
 # Installation
 
-Find and download the latest version of Spartacus under [Releases](https://github.com/Accenture/Spartacus/releases). Otherwise simply clone this repository and build from source.
+Find and download the latest version of Spartacus under [Releases](https://github.com/sadreck/Spartacus/releases). Otherwise simply clone this repository and build from source.
 
 # Supported Functionality
 

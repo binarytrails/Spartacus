@@ -1,5 +1,9 @@
 # Spartacus Changelog
 
+## v2.2.2
+
+* `[Update]` Update copyright & links, added workflows to repo.
+
 ## v2.2.1
 
 * `[Update]` Added additional debug stacktrace statements when writing to CSV files.
