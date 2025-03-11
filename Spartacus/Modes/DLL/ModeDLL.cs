@@ -28,6 +28,12 @@ namespace Spartacus.Modes.DLL
                 Logger.Info("Processing existing log file: " + RuntimeData.PMLFile);
             }
 
+            if (RuntimeData.isLocal)
+            {
+                Console.WriteLine("je fais is local");
+                Console.WriteLine(RuntimeData.DLLPath);
+            }
+
             Logger.Info("Reading events file...");
             ProcMonPML log = new(RuntimeData.PMLFile);
 

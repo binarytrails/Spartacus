@@ -27,6 +27,7 @@ namespace Spartacus.Spartacus.CommandLine
             { "overwrite", "switch" },
             { "external-resources", "switch" },
             { "acl", "switch" },
+            { "local", "switch" },
             { "help", "switch" },
             { "pml", "" },
             { "pmc", "" },
@@ -38,6 +39,7 @@ namespace Spartacus.Spartacus.CommandLine
             { "only", "" },
             { "action", "" },
             { "path", "" },
+            { "dllpath", "" },
             { "prototypes", "" },
             { "pfx", "" },
             { "password", "" },
@@ -199,6 +201,12 @@ namespace Spartacus.Spartacus.CommandLine
                             RuntimeData.isACL = (argument.Value.First().Length > 0);
                         }
                         break;
+                    case "local":
+                        if (argument.Value.First().ToLower() != "false")
+                        {
+                            RuntimeData.isLocal = (argument.Value.First().Length > 0);
+                        }
+                        break;
                     case "help":
                         if (argument.Value.First().ToLower() != "false")
                         {
@@ -210,6 +218,9 @@ namespace Spartacus.Spartacus.CommandLine
                         break;
                     case "path":
                         RuntimeData.Path = argument.Value.First().Trim();
+                        break;
+                    case "dllpath":
+                        RuntimeData.DLLPath = argument.Value.First().Trim();
                         break;
                     case "prototypes":
                         RuntimeData.PrototypesFile = argument.Value.First().Trim();
