@@ -19,6 +19,16 @@ namespace Spartacus.Modes.DLL
     {
         public override void Run()
         {
+            if (RuntimeData.isLocal)
+            {
+                Logger.Info("Running is local mode...");
+                Logger.Info("DLL path for local mode:" + RuntimeData.DLLPath);
+                CreateSingleSolutionForDLL(RuntimeData.DLLPath);
+
+                Logger.Info("End of running local mode.");
+                return;
+            }
+
             if (!RuntimeData.IsExistingLog)
             {
                 GatherEvents();
@@ -26,12 +36,6 @@ namespace Spartacus.Modes.DLL
             else
             {
                 Logger.Info("Processing existing log file: " + RuntimeData.PMLFile);
-            }
-
-            if (RuntimeData.isLocal)
-            {
-                Logger.Info("Running is local mode...");
-                Logger.Info("DLL path for local mode:"+ RuntimeData.DLLPath);
             }
 
             Logger.Info("Reading events file...");
@@ -78,6 +82,28 @@ namespace Spartacus.Modes.DLL
             if (!String.IsNullOrEmpty(RuntimeData.Solution) && Directory.Exists(RuntimeData.Solution))
             {
                 CreateSolutionsForDLLs(events);
+            }
+        }
+
+        protected void CreateSingleSolutionForDLL(string dllPath) 
+        {
+            string solution = Path.Combine(RuntimeData.Solution, Path.GetFileNameWithoutExtension(dllPath));
+            string dllFile = Helper.LookForFileIfNeeded(dllPath);
+
+            ProxyGeneration proxyMode = new();
+            if (String.IsNullOrEmpty(dllPath) || String.IsNullOrEmpty(dllPath) || !File.Exists(dllPath))
+            {
+                Logger.Warning(" - No DLL Found", true, false);
+                return;
+            }
+            else
+            {
+                Logger.Info(" - Found", true, false);
+            }
+
+            if (!proxyMode.ProcessSingleDLL(dllPath, solution))
+            {
+                Logger.Error("Could not generate proxy DLL for: " + dllFile);
             }
         }
 
