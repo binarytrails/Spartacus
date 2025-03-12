@@ -30,8 +30,8 @@ namespace Spartacus.Modes.DLL
 
             if (RuntimeData.isLocal)
             {
-                Console.WriteLine("je fais is local");
-                Console.WriteLine(RuntimeData.DLLPath);
+                Logger.Info("Running is local mode...");
+                Logger.Info("DLL path for local mode:"+ RuntimeData.DLLPath);
             }
 
             Logger.Info("Reading events file...");

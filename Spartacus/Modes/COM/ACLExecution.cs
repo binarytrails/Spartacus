@@ -83,6 +83,12 @@ namespace Spartacus.Modes.COM
                     Logger.Warning("Trying to save file again...");
                 }
             } while (true);
+
+            // Create solutions for identified DLLs.
+            if (!String.IsNullOrEmpty(RuntimeData.Solution) && Directory.Exists(RuntimeData.Solution))
+            {
+                CreateSolutionsForDLLs(Findings);
+            }
         }
 
         protected void ExportToCSV(List<ACLStruct> findings)
@@ -105,7 +111,6 @@ namespace Spartacus.Modes.COM
             }
         }
 
-        // TODO: need to be plugged for ACL run (need to know acl run ???)
         protected void CreateSolutionsForDLLs(List<ACLStruct> findings)
         {
             // First we collect which files we need to proxy.
