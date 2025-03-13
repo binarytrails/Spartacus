@@ -16,8 +16,8 @@ namespace Spartacus
         {
             string appVersion = String.Format("{0}.{1}.{2}", Assembly.GetExecutingAssembly().GetName().Version.Major.ToString(), Assembly.GetExecutingAssembly().GetName().Version.Minor.ToString(), Assembly.GetExecutingAssembly().GetName().Version.Build.ToString());
             
-            Logger.Info($@"Spartacus v{appVersion} [ Pavel Tsakalidis ]", true, false);
-            Logger.Info($@"- For more information visit https://github.com/sadreck/Spartacus", true, false);
+            Logger.Info($@"Spartacus v{appVersion} [ Accenture & EY Security ]", true, false);
+            Logger.Info($@"- For more information visit https://github.com/binarytrails/Spartacus", true, false);
             Logger.Info("", true, false);
 
             Helper helper = new();

@@ -17,6 +17,7 @@ namespace Spartacus.Spartacus.CommandLine
             PROXY = 3,
             COM = 4,
             SIGN = 5,
+            LOCAL = 6
         };
 
         public struct SignCertificate
@@ -68,6 +69,8 @@ namespace Spartacus.Spartacus.CommandLine
 
         public static bool isACL = false;
 
+        public static bool isLocal = false;
+
         public static bool isHelp = false;
 
         public static List<string> BatchDLLFiles = new();
@@ -75,6 +78,8 @@ namespace Spartacus.Spartacus.CommandLine
         public static string Action = "";
 
         public static string Path = "";
+
+        public static string DLLPath = "";
 
         public static string PrototypesFile = "";
 

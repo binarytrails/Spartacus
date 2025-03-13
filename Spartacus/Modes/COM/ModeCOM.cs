@@ -45,6 +45,24 @@ namespace Spartacus.Modes.COM
             {
                 Logger.Debug("--csv exists and will be overwritten");
             }
+
+            // Solution folder.
+            if (String.IsNullOrEmpty(RuntimeData.Solution))
+            {
+                Logger.Debug("--solution is missing, will skip DLL proxy generation");
+            }
+            else if (Directory.Exists(RuntimeData.Solution))
+            {
+                Logger.Debug("--solution directory already exists");
+            }
+            else
+            {
+                Logger.Debug("--solution directory does not exist - creating now");
+                if (!Helper.CreateTargetDirectory(RuntimeData.Solution))
+                {
+                    throw new Exception("Could not create --solution directory: " + RuntimeData.Solution);
+                }
+            }
         }
 
         protected void SanitiseExistingLogProcessing()
@@ -61,7 +79,20 @@ namespace Spartacus.Modes.COM
         }
 
         protected void SanitiseNewLogProcessing()
-        {
+        {   
+            // Validate directory for files output exists.
+            string directoryPath = Path.GetDirectoryName(RuntimeData.PMLFile);
+            if (!Directory.Exists(directoryPath))
+            {
+                // If the directory doesn't exist, create it
+                Directory.CreateDirectory(directoryPath);
+                Console.WriteLine("Directory created: " + directoryPath);
+            }
+            else
+            {
+                Console.WriteLine("Directory already exists: " + directoryPath);
+            }
+
             // Check for ProcMon.
             if (String.IsNullOrEmpty(RuntimeData.ProcMonExecutable))
             {

@@ -192,6 +192,12 @@ List DLL's exports and check if each function has a pre-generated prototype.
 --mode proxy --action exports --dll C:\Windows\System32\version.dll --dll C:\Windows\System32\amsi.dll --prototypes ./Assets/prototypes.csv
 ```
 
+Generate solution from a specific DLL found locally on the machine.
+
+```
+--mode local --existing --dllpath C:\Windows\System32\amsi.dll --solution "C:\Output\AmsiSolution" --pml "C:\Output\ProcMonOutput.pml" --csv "C:\Output\VulnerableDLLs.csv" --verbose
+```
+
 ## Signing DLL Files
 
 Spartacus now supports generating self-signed certificates (while copying attributes from existing files), and signing DLL files.

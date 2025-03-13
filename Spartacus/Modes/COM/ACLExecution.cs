@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using Spartacus.Modes.PROXY;
 using Spartacus.Spartacus.CommandLine;
 using Spartacus.Spartacus.Models;
 using Spartacus.Utils;
@@ -82,6 +83,12 @@ namespace Spartacus.Modes.COM
                     Logger.Warning("Trying to save file again...");
                 }
             } while (true);
+
+            // Create solutions for identified DLLs.
+            if (!String.IsNullOrEmpty(RuntimeData.Solution) && Directory.Exists(RuntimeData.Solution))
+            {
+                CreateSolutionsForDLLs(Findings);
+            }
         }
 
         protected void ExportToCSV(List<ACLStruct> findings)
@@ -100,6 +107,56 @@ namespace Spartacus.Modes.COM
                             item.result
                         )
                     );
+                }
+            }
+        }
+
+        protected void CreateSolutionsForDLLs(List<ACLStruct> findings)
+        {
+            // First we collect which files we need to proxy.
+            Logger.Verbose("Identifying files to generate solutions for...");
+            Dictionary<string, string> filesToProxy = new();
+            foreach (var finding in findings)
+            {
+                string dllFilename = Path.GetFileName(finding.filePath).ToLower();
+                if (String.IsNullOrEmpty(dllFilename) || filesToProxy.ContainsKey(dllFilename))
+                {
+                    continue;
+                }
+
+                Logger.Debug("File to proxy: " + finding.filePath);
+                filesToProxy.Add(dllFilename, finding.filePath);
+            }
+
+            // Now we create the proxies.
+            ProxyGeneration proxyMode = new();
+            foreach (KeyValuePair<string, string> file in filesToProxy.OrderBy(x => x.Key))
+            {
+                Logger.Info("Processing " + file.Key, false, true);
+                string solution = Path.Combine(RuntimeData.Solution, Path.GetFileNameWithoutExtension(file.Value));
+                string dllFile = Helper.LookForFileIfNeeded(file.Value);
+
+                if (String.IsNullOrEmpty(file.Value) || String.IsNullOrEmpty(dllFile) || !File.Exists(dllFile))
+                {
+                    try
+                    {
+                        File.Create(Path.Combine(solution, file.Key + "-file-not-found")).Dispose();
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.Warning(" - error creating", false, false);
+                    }
+                    Logger.Warning(" - No DLL Found", true, false);
+                    continue;
+                }
+                else
+                {
+                    Logger.Info(" - Found", true, false);
+                }
+
+                if (!proxyMode.ProcessSingleDLL(dllFile, solution))
+                {
+                    Logger.Error("Could not generate proxy DLL for: " + dllFile);
                 }
             }
         }

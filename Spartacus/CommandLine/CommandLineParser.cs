@@ -3,13 +3,10 @@ using Spartacus.Modes.DETECT;
 using Spartacus.Modes.DLL;
 using Spartacus.Modes.PROXY;
 using Spartacus.Modes.SIGN;
-using Spartacus.Properties;
+using Spartacus.Modes.LOCAL;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Spartacus.Spartacus.CommandLine
 {
@@ -38,6 +35,7 @@ namespace Spartacus.Spartacus.CommandLine
             { "only", "" },
             { "action", "" },
             { "path", "" },
+            { "dllpath", "" },
             { "prototypes", "" },
             { "pfx", "" },
             { "password", "" },
@@ -211,6 +209,9 @@ namespace Spartacus.Spartacus.CommandLine
                     case "path":
                         RuntimeData.Path = argument.Value.First().Trim();
                         break;
+                    case "dllpath":
+                        RuntimeData.DLLPath = argument.Value.First().Trim();
+                        break;
                     case "prototypes":
                         RuntimeData.PrototypesFile = argument.Value.First().Trim();
                         break;
@@ -286,6 +287,7 @@ namespace Spartacus.Spartacus.CommandLine
                 "proxy" => RuntimeData.SpartacusMode.PROXY,
                 "com" => RuntimeData.SpartacusMode.COM,
                 "sign" => RuntimeData.SpartacusMode.SIGN,
+                "local" => RuntimeData.SpartacusMode.LOCAL,
                 _ => RuntimeData.SpartacusMode.NONE,
             };
         }
@@ -305,6 +307,7 @@ namespace Spartacus.Spartacus.CommandLine
                 RuntimeData.SpartacusMode.PROXY => new ModeProxy(),
                 RuntimeData.SpartacusMode.COM => new ModeCOM(),
                 RuntimeData.SpartacusMode.SIGN => new ModeSign(),
+                RuntimeData.SpartacusMode.LOCAL => new ModeLocal(),
                 _ => throw new Exception("--mode is not valid"),
             };
             RuntimeData.ModeObject.SanitiseAndValidateRuntimeData();
