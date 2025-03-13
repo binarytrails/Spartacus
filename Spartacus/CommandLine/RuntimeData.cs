@@ -17,6 +17,7 @@ namespace Spartacus.Spartacus.CommandLine
             PROXY = 3,
             COM = 4,
             SIGN = 5,
+            LOCAL = 6
         };
 
         public struct SignCertificate

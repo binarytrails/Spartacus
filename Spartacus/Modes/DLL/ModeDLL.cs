@@ -1,16 +1,11 @@
 ﻿using Spartacus.Modes.PROXY;
 using Spartacus.ProcMon;
-using Spartacus.Properties;
-using Spartacus.Spartacus;
 using Spartacus.Spartacus.CommandLine;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using static Spartacus.ProcMon.ProcMonConstants;
 
 namespace Spartacus.Modes.DLL
@@ -19,16 +14,6 @@ namespace Spartacus.Modes.DLL
     {
         public override void Run()
         {
-            if (RuntimeData.isLocal)
-            {
-                Logger.Info("Running is local mode...");
-                Logger.Info("DLL path for local mode:" + RuntimeData.DLLPath);
-                CreateSingleSolutionForDLL(RuntimeData.DLLPath);
-
-                Logger.Info("End of running local mode.");
-                return;
-            }
-
             if (!RuntimeData.IsExistingLog)
             {
                 GatherEvents();

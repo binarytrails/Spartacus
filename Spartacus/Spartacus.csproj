@@ -87,6 +87,7 @@
     <Compile Include="Modes\COM\StandardExecution.cs" />
     <Compile Include="Modes\DETECT\ModeDetect.cs" />
     <Compile Include="Modes\DLL\ModeDLL.cs" />
+    <Compile Include="Modes\DLL\ModeLocal.cs" />
     <Compile Include="Modes\ModeBase.cs" />
     <Compile Include="Modes\PROXY\ExportsGeneration.cs" />
     <Compile Include="Modes\PROXY\ModeProxy.cs" />

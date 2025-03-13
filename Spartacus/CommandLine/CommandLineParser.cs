@@ -3,13 +3,10 @@ using Spartacus.Modes.DETECT;
 using Spartacus.Modes.DLL;
 using Spartacus.Modes.PROXY;
 using Spartacus.Modes.SIGN;
-using Spartacus.Properties;
+using Spartacus.Modes.LOCAL;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Spartacus.Spartacus.CommandLine
 {
@@ -27,7 +24,6 @@ namespace Spartacus.Spartacus.CommandLine
             { "overwrite", "switch" },
             { "external-resources", "switch" },
             { "acl", "switch" },
-            { "local", "switch" },
             { "help", "switch" },
             { "pml", "" },
             { "pmc", "" },
@@ -201,12 +197,6 @@ namespace Spartacus.Spartacus.CommandLine
                             RuntimeData.isACL = (argument.Value.First().Length > 0);
                         }
                         break;
-                    case "local":
-                        if (argument.Value.First().ToLower() != "false")
-                        {
-                            RuntimeData.isLocal = (argument.Value.First().Length > 0);
-                        }
-                        break;
                     case "help":
                         if (argument.Value.First().ToLower() != "false")
                         {
@@ -297,6 +287,7 @@ namespace Spartacus.Spartacus.CommandLine
                 "proxy" => RuntimeData.SpartacusMode.PROXY,
                 "com" => RuntimeData.SpartacusMode.COM,
                 "sign" => RuntimeData.SpartacusMode.SIGN,
+                "local" => RuntimeData.SpartacusMode.LOCAL,
                 _ => RuntimeData.SpartacusMode.NONE,
             };
         }
@@ -316,6 +307,7 @@ namespace Spartacus.Spartacus.CommandLine
                 RuntimeData.SpartacusMode.PROXY => new ModeProxy(),
                 RuntimeData.SpartacusMode.COM => new ModeCOM(),
                 RuntimeData.SpartacusMode.SIGN => new ModeSign(),
+                RuntimeData.SpartacusMode.LOCAL => new ModeLocal(),
                 _ => throw new Exception("--mode is not valid"),
             };
             RuntimeData.ModeObject.SanitiseAndValidateRuntimeData();
