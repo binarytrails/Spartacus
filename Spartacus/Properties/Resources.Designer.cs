@@ -23,7 +23,7 @@ namespace Spartacus.Properties {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
-        
+
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
@@ -31,7 +31,7 @@ namespace Spartacus.Properties {
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
@@ -45,7 +45,7 @@ namespace Spartacus.Properties {
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
@@ -59,7 +59,7 @@ namespace Spartacus.Properties {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to /*
         /// *  This file has been created by using the existing Ghidra ExportFunctionInfoScript.java script as a guide.
@@ -79,7 +79,7 @@ namespace Spartacus.Properties {
                 return ResourceManager.GetString("ExportFunctionDefinitionsINI.java", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Usage: Spartacus.exe --mode com [--help] [OPTIONS]
         ///
@@ -94,7 +94,7 @@ namespace Spartacus.Properties {
                 return ResourceManager.GetString("help\\com.txt", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Usage: Spartacus.exe --mode detect [--help]
         ///
@@ -105,7 +105,7 @@ namespace Spartacus.Properties {
                 return ResourceManager.GetString("help\\detect.txt", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Usage: Spartacus.exe --mode dll [--help] [OPTIONS]
         ///
@@ -120,9 +120,28 @@ namespace Spartacus.Properties {
                 return ResourceManager.GetString("help\\dll.txt", resourceCulture);
             }
         }
-        
+
         /// <summary>
-        ///   Looks up a localized string similar to Usage: Spartacus.exe --mode [dll|proxy|com|detect|sign] [--help] [OPTIONS]
+        ///   Looks up a localized string similar to Usage: Spartacus.exe --mode local [--help] [OPTIONS]
+        ///
+        ///--dllpath               Path of the DLL to generate a solution.
+        ///--solution              Path to the directory where the solutions for the specified DLL will be stored.
+        ///
+        ///Examples:
+        ///
+        ///Generate solution into C:\DataLocal\Solutions for a specified DLL file.
+        ///
+        ///    --mode local --dllpath C:\Windows\System32\secur32.dll  --solution C:\DataLocal\Solutions --verbose
+        ///	.
+        /// </summary>
+        internal static string help_local_txt {
+            get {
+                return ResourceManager.GetString("help\\local.txt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Usage: Spartacus.exe --mode [dll|proxy|com|detect|sign|local] [--help] [OPTIONS]
         ///
         ///Supported Modes
         ///---------------
@@ -131,7 +150,7 @@ namespace Spartacus.Properties {
         ///proxy                   Generate Visual Studio solutions for DLL proxy files.
         ///com                     Identify COM hijacking vulnerabilities.
         ///detect                  Identify DLLs that are proxying calls (like &apos;DLL Hijacking in progress&apos;).
-        ///                        This isn&apos;t a feature to be relied upon, it&apos;s there to get the low  [rest of string was truncated]&quot;;.
+        ///                        This isn&apos;t a feature to be relied upon, it&apos;s there to get th [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string help_main_txt {
             get {

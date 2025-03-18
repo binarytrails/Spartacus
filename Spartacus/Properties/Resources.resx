@@ -220,8 +220,21 @@ Parse an existing PML event log output, save output to CSV, and generate proxy D
 
     --mode dll --existing --pml C:\MyData\SomeBackup.pml --csv C:\Data\VulnerableDLLFiles.csv --solution C:\Data\Solutions --verbose</value>
   </data>
+  <data name="help\local.txt" xml:space="preserve">
+    <value>Usage: Spartacus.exe --mode local [--help] [OPTIONS]
+
+--dllpath               Path of the DLL to generate a solution.
+--solution              Path to the directory where the solutions for the specified DLL will be stored.
+
+Examples:
+
+Generate solution into C:\DataLocal\Solutions for a specified DLL file.
+
+    --mode local --dllpath C:\Windows\System32\secur32.dll  --solution C:\DataLocal\Solutions --verbose
+	</value>
+  </data>
   <data name="help\main.txt" xml:space="preserve">
-    <value>Usage: Spartacus.exe --mode [dll|proxy|com|detect|sign] [--help] [OPTIONS]
+    <value>Usage: Spartacus.exe --mode [dll|proxy|com|detect|sign|local] [--help] [OPTIONS]
 
 Supported Modes
 ---------------
@@ -232,6 +245,7 @@ com                     Identify COM hijacking vulnerabilities.
 detect                  Identify DLLs that are proxying calls (like 'DLL Hijacking in progress').
                         This isn't a feature to be relied upon, it's there to get the low hanging fruit.
 sign                    Generate self-signed certificates and use them to sign executables/DLLs.
+local                   Generate a solution for a specified DLL file path.
 
 Global Options
 --------------

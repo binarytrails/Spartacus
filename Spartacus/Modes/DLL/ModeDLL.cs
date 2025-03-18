@@ -70,28 +70,6 @@ namespace Spartacus.Modes.DLL
             }
         }
 
-        protected void CreateSingleSolutionForDLL(string dllPath) 
-        {
-            string solution = Path.Combine(RuntimeData.Solution, Path.GetFileNameWithoutExtension(dllPath));
-            string dllFile = Helper.LookForFileIfNeeded(dllPath);
-
-            ProxyGeneration proxyMode = new();
-            if (String.IsNullOrEmpty(dllPath) || String.IsNullOrEmpty(dllPath) || !File.Exists(dllPath))
-            {
-                Logger.Warning(" - No DLL Found", true, false);
-                return;
-            }
-            else
-            {
-                Logger.Info(" - Found", true, false);
-            }
-
-            if (!proxyMode.ProcessSingleDLL(dllPath, solution))
-            {
-                Logger.Error("Could not generate proxy DLL for: " + dllFile);
-            }
-        }
-
         protected void CreateSolutionsForDLLs(Dictionary<string, PMLEvent> events)
         {
             // First we collect which files we need to proxy.
