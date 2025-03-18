@@ -195,7 +195,7 @@ List DLL's exports and check if each function has a pre-generated prototype.
 Generate solution from a specific DLL found locally on the machine.
 
 ```
---mode local --existing --dllpath C:\Windows\System32\amsi.dll --solution "C:\Output\AmsiSolution" --pml "C:\Output\ProcMonOutput.pml" --csv "C:\Output\VulnerableDLLs.csv" --verbose
+--mode local --existing --dllpath C:\Windows\System32\amsi.dll --solution "C:\Output\AmsiSolution" --verbose
 ```
 
 ## Signing DLL Files

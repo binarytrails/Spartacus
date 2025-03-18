@@ -171,6 +171,7 @@ namespace Spartacus.Utils
                 RuntimeData.SpartacusMode.COM => @"help\com.txt",
                 RuntimeData.SpartacusMode.DETECT => @"help\detect.txt",
                 RuntimeData.SpartacusMode.SIGN => @"help\sign.txt",
+                RuntimeData.SpartacusMode.LOCAL => @"help\local.txt",
                 _ => @"help\main.txt"
             };
 

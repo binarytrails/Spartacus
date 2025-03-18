@@ -96,5 +96,5 @@ Spartacus.exe --mode sign --action sign --pfx "C:\Output\certificate.pfx" --pass
 ### I want to clone a specific DLL and generate a solution for it
 
 ```
-Spartacus.exe --mode local --existing  --dllpath C:\Windows\System32\amsi.dll --solution "C:\Output\AmsiSolution" --pml "C:\Output\ProcMonOutput.pml" --csv "C:\Output\VulnerableDLLs.csv" --verbose
+Spartacus.exe --mode local --existing  --dllpath C:\Windows\System32\amsi.dll --solution "C:\Output\AmsiSolution" --verbose
 ```
